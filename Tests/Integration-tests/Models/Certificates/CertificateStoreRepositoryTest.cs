@@ -146,11 +146,40 @@ namespace IntegrationTests.Models.Certificates
 
 			var certificateStoreRepository = CreateCertificateStoreRepository();
 
-			var stores = certificateStoreRepository.Find(StoreLocation.CurrentUser, "*a*").Cast<CertificateStore>().ToArray();
-			Assert.Equal(currentUserStores.Count(store => store.Like("*a*")), stores.Length);
+			const string pattern = "*a*";
 
-			stores = certificateStoreRepository.Find(StoreLocation.LocalMachine, "*a*").Cast<CertificateStore>().ToArray();
-			Assert.Equal(localMachineStores.Count(store => store.Like("*a*")), stores.Length);
+			// CurrentUser
+			var stores = certificateStoreRepository.Find(StoreLocation.CurrentUser, pattern).ToArray();
+			var registryStores = currentUserStores.Where(store => store.Like(pattern)).ToArray();
+			foreach(var store in stores)
+			{
+				Assert.True(store.Name.Contains('a', StringComparison.OrdinalIgnoreCase));
+				Assert.True(store.RegistryName!.Contains('a', StringComparison.OrdinalIgnoreCase));
+			}
+
+			foreach(var registryStore in registryStores)
+			{
+				Assert.True(registryStore.Contains('a', StringComparison.OrdinalIgnoreCase));
+			}
+
+			Assert.Equal(registryStores.Length, stores.Length);
+
+			// LocalMachine
+			stores = certificateStoreRepository.Find(StoreLocation.LocalMachine, pattern).ToArray();
+			registryStores = localMachineStores.Where(store => store.Like(pattern)).ToArray();
+			foreach(var store in stores)
+			{
+				Assert.True(store.Name.Contains('a', StringComparison.OrdinalIgnoreCase));
+				Assert.True(store.RegistryName!.Contains('a', StringComparison.OrdinalIgnoreCase));
+			}
+
+			foreach(var registryStore in registryStores)
+			{
+				Assert.True(registryStore.Contains('a', StringComparison.OrdinalIgnoreCase));
+			}
+
+			// Sometimes the following test fails. E.g. Expected 12, Actual 11. Don't know why.
+			Assert.Equal(registryStores.Length, stores.Length);
 		}
 
 		[Fact]
