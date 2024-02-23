@@ -1,0 +1,42 @@
+﻿@page
+@model AddStoreModel
+@{ ViewData["Title"] = "Add certificate-store"; }
+<h1>@ViewData["Title"]</h1>
+@if(!string.IsNullOrEmpty(Model.Confirmation))
+{
+	<div class="alert alert-success mt-3">
+		<h2 class="h4">Confirmation</h2>
+		<p class="mb-0">@Model.Confirmation</p>
+	</div>
+}
+@if(!string.IsNullOrEmpty(Model.Error))
+{
+	<div class="alert alert-danger mt-3">
+		<h2 class="h4">Error</h2>
+		<p class="mb-0">@Model.Error</p>
+		@if(Model.ErrorDetails.Any())
+		{
+			<ul class="mb-0">
+				@foreach(var detail in Model.ErrorDetails)
+				{
+					<li>@detail</li>
+				}
+			</ul>
+		}
+	</div>
+}
+<form method="post">
+	<fieldset class="border border-2 border-light p-3 pt-2 rounded-3">
+		<div class="mb-3">
+			<label asp-for="Location"></label>
+			<select asp-for="Location" asp-items="@Model.Locations" class="form-control"></select>
+		</div>
+		<div class="mb-3">
+			<label asp-for="Name"></label>
+			<input asp-for="Name" class="form-control" />
+		</div>
+		<div class="text-end">
+			<button class="btn btn-primary" type="submit">Save</button>
+		</div>
+	</fieldset>
+</form>

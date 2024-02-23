@@ -1,0 +1,64 @@
+﻿@page
+@model CertificateModel
+@{ ViewData["Title"] = "Certificate"; }
+<h1>@ViewData["Title"]</h1>
+@if(!string.IsNullOrEmpty(Model.Confirmation))
+{
+	<div class="alert alert-success mt-3">
+		<h2 class="h4">Confirmation</h2>
+		<p class="mb-0">@Model.Confirmation</p>
+		@if(Model.ValidatedReturnUrl != null)
+		{
+			<div class="text-end">
+				<a class="btn btn-primary" href="@Model.ValidatedReturnUrl">Return</a>
+			</div>
+		}
+	</div>
+}
+else
+{
+	@if(!string.IsNullOrEmpty(Model.Error))
+	{
+		<div class="alert alert-danger mt-3">
+			<h2 class="h4">Error</h2>
+			<p>@Model.Error</p>
+			@if(Model.ErrorDetails.Any())
+			{
+				<ul>
+					@foreach(var detail in Model.ErrorDetails)
+					{
+						<li>@detail</li>
+					}
+				</ul>
+			}
+		</div>
+	}
+
+	@if(Model.Certificate != null)
+	{
+		<h2 class="h4">@Model.Certificate.Subject</h2>
+		@if(Model.ProtectedStoreName)
+		{
+			<div class="alert alert-warning mt-3">This certificate can not be deleted. The store-name "@Model.StoreName" do not match the store-name-restriction-pattern "@Model.StoreNameRestrictionPattern".</div>
+		}
+
+		@await Html.PartialAsync("~/Pages/Shared/CertificateDetails.cshtml", new CertificateDetails { Certificate = Model.Certificate })
+		<form asp-page-handler="Delete" method="post">
+			<input asp-for="@Model.ReturnUrl" type="hidden" />
+			<input asp-for="@Model.StoreLocation" type="hidden" />
+			<input asp-for="@Model.StoreName" type="hidden" />
+			<input asp-for="@Model.Thumbprint" type="hidden" />
+			<div class="text-end">
+				@if(Model.ValidatedReturnUrl != null)
+				{
+					<a class="btn btn-secondary" href="@Model.ValidatedReturnUrl">Cancel</a>
+				}
+				<button class="btn btn-danger"@(Model.ProtectedStoreName ? " disabled=\"disabled\"" : null) onclick="return confirm('Confirm delete of certificate @Model.StoreLocation/@Model.StoreName - @Model.Thumbprint!')" type="submit">Delete</button>
+			</div>
+		</form>
+	}
+	else if(string.IsNullOrEmpty(Model.Error))
+	{
+		<div class="alert alert-warning mt-3">The certificate does not exist.</div>
+	}
+}

@@ -1,0 +1,23 @@
+{
+	"compilerOptions": {
+		/* Visit https://aka.ms/tsconfig to read more about this file */
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		//"forceConsistentCasingInFileNames": true,
+		"lib": [
+			"DOM",
+			"ES2015"
+		],
+		"module": "CommonJS",
+		"noEmitOnError": false,
+		"noImplicitAny": false,
+		"outDir": "wwwroot/Scripts",
+		"skipLibCheck": true,
+		//"sourceMap": false,
+		"strict": true,
+		"target": "es5"
+	},
+	"include": [
+		"Scripts/Site.ts"
+	]
+}

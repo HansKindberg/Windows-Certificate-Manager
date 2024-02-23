@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<UserSecretsId>3E54009D-75CF-4A6F-9E3F-79A194EC25D0</UserSecretsId>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
+	</ItemGroup>
+	<ItemGroup>
+		<InternalsVisibleTo Include="Integration-tests" />
+		<InternalsVisibleTo Include="Unit-tests" />
+	</ItemGroup>
+	<ItemGroup>
+		<None_ Include="wwwroot/**/.gitkeep;package.json;package-lock.json;tsconfig.json" />
+		<Content Remove="@(None_)" />
+		<None Include="@(None_)" />
+	</ItemGroup>
+	<Import Project="Npm.targets" />
+</Project>

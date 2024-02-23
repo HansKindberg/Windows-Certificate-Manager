@@ -1,0 +1,71 @@
+﻿@page
+@model StoresModel
+@{ ViewData["Title"] = "Stores"; }
+@await Html.PartialAsync("~/Pages/Shared/Modal.cshtml", new Modal { Text = "Processing..." })
+<h1>@ViewData["Title"]</h1>
+<form method="get">
+	<fieldset class="border border-2 border-light p-3 pt-2 rounded-3">
+		<legend>Search</legend>
+		<p>"*" is wildcard.</p>
+		<div class="mb-3">
+			<label asp-for="Location"></label>
+			<select asp-for="Location" asp-items="@Model.Locations" class="form-control"></select>
+		</div>
+		<div class="mb-3">
+			<label asp-for="Name"></label>
+			<input asp-for="Name" class="form-control" />
+		</div>
+		<!-- Timestamp field to make the input fields change all the time. -->
+		<input name="ts" type="hidden" value="@DateTime.UtcNow.Ticks" />
+		<div class="text-end">
+			<button asp-fragment="result" class="btn btn-primary" data-bs-target="#modal" data-bs-toggle="modal" name="Action" type="submit" value="Search">Search</button>
+			<button asp-fragment="reset" class="btn btn-secondary" name="Action" type="submit" value="Reset">Reset</button>
+		</div>
+	</fieldset>
+</form>
+@if(string.IsNullOrEmpty(Model.Error))
+{
+	if(Model.Action == SearchFormAction.Search)
+	{
+		if(Model.Stores.Any())
+		{
+			<div class="alert alert-light mt-3" id="result">
+				<h2 class="h4">Search-result</h2>
+				<p>Number of hits: <strong>@Model.Stores.Count</strong></p>
+				<p>Stores in bold text are standard stores.</p>
+				@foreach(var location in Model.Stores.Keys)
+				{
+					<h3 class="h5">@location</h3>
+					<ul>
+						@foreach(var store in Model.Stores[location])
+						{
+							<li>
+								<a asp-page="Store" asp-route-returnUrl="@Model.Request.GetEncodedPathAndQuery()#result" asp-route-location="@store.Location" asp-route-name="@store.Name">
+									@if(store.Standard)
+									{
+										<strong>@store.Name</strong>
+									}
+									else
+									{
+										@store.Name
+									}
+								</a>
+							</li>
+						}
+					</ul>
+				}
+			</div>
+		}
+		else
+		{
+			<div class="alert alert-warning mt-3" id="result">The search gave no hits.</div>
+		}
+	}
+}
+else
+{
+	<div class="alert alert-danger mt-3" id="result">
+		<h2 class="h4">Error</h2>
+		<p>@Model.Error</p>
+	</div>
+}

@@ -1,0 +1,25 @@
+{
+	"$schema": "http://json.schemastore.org/launchsettings.json",
+	"profiles": {
+		"Kestrel": {
+			"applicationUrl": "https://localhost:5000",
+			"commandName": "Project",
+			"dotnetRunMessages": true,
+			"environmentVariables": {
+				"ASPNETCORE_ENVIRONMENT": "Development"
+			},
+			"launchBrowser": true
+		},
+		"Docker": {
+			"commandName": "Docker",
+			"environmentVariables": {
+				"ASPNETCORE_URLS": "https://+:5001"
+			},
+			"launchBrowser": true,
+			"launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+			"publishAllPorts": false,
+			"sslPort": 5001,
+			"useSSL": true
+		}
+	}
+}

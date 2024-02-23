@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>@ViewData["Title"] - Windows certificate manager</title>
+		<link asp-append-version="true" href="~/Style/site.css" rel="stylesheet" />
+	</head>
+	<body>
+		<header class="bg-white border-4 border-bottom border-success fixed-top">
+			<nav class="navbar navbar-expand-md">
+				<div class="container-md">
+					<a class="navbar-brand" href="/">
+						<img alt="Logotype" src="logo.png" />
+					</a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbar-collapse">
+						<ul class="navbar-nav me-auto mb-2 mb-md-0">
+							<li class="nav-item">
+								<a aria-current="page" asp-page="Stores" class="nav-link@(Context.Request.Path.StartsWithSegments("/Stores", StringComparison.OrdinalIgnoreCase) ? " active" : null)">Stores</a>
+							</li>
+							<li class="nav-item">
+								<a aria-current="page" asp-page="AddStore" class="nav-link@(Context.Request.Path.StartsWithSegments("/AddStore", StringComparison.OrdinalIgnoreCase) ? " active" : null)">Add store</a>
+							</li>
+							<li class="nav-item">
+								<a aria-current="page" asp-page="AddCertificate" class="nav-link@(Context.Request.Path.StartsWithSegments("/AddCertificate", StringComparison.OrdinalIgnoreCase) ? " active" : null)">Add certificate</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<main class="container-md mb-4" role="main">
+			@RenderBody()
+		</main>
+		<script asp-append-version="true" src="~/Scripts/site.js"></script>
+	</body>
+</html>

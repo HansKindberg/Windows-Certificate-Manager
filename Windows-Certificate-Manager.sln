@@ -1,0 +1,75 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".certificates", ".certificates", "{BC34A826-C810-4F30-9822-A7E6A3DC123F}"
+	ProjectSection(SolutionItems) = preProject
+		.certificates\client-certificate-1.pfx = .certificates\client-certificate-1.pfx
+		.certificates\client-certificate-2.pfx = .certificates\client-certificate-2.pfx
+		.certificates\client-certificate-3.pfx = .certificates\client-certificate-3.pfx
+		.certificates\client-certificate-4.pfx = .certificates\client-certificate-4.pfx
+		.certificates\intermediate-certificate-1.crt = .certificates\intermediate-certificate-1.crt
+		.certificates\intermediate-certificate-2.crt = .certificates\intermediate-certificate-2.crt
+		.certificates\intermediate-certificate-3.crt = .certificates\intermediate-certificate-3.crt
+		.certificates\intermediate-certificate-4.crt = .certificates\intermediate-certificate-4.crt
+		.certificates\root-certificate.crt = .certificates\root-certificate.crt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".root", ".root", "{1B4114C6-36AD-4EBC-888E-49FCC6A42DDD}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		NuGet.config = NuGet.config
+		ReadMe.md = ReadMe.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{88CE3E86-F441-4404-8D3A-C072FD8741E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DDB61EAE-6C28-4889-83DD-3EE1BE483883}"
+	ProjectSection(SolutionItems) = preProject
+		Tests\.editorconfig = Tests\.editorconfig
+		Tests\Directory.Build.props = Tests\Directory.Build.props
+		Tests\Directory.Build.targets = Tests\Directory.Build.targets
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Source\Application\Application.csproj", "{4E606025-96C4-41CA-8F84-8F30589335EE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Integration-tests", "Tests\Integration-tests\Integration-tests.csproj", "{0AF54F81-DF10-4833-9E6F-DF93BFA8A9C3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unit-tests", "Tests\Unit-tests\Unit-tests.csproj", "{FBBB25C6-EC82-43EA-9398-AFBAABE16514}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E606025-96C4-41CA-8F84-8F30589335EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E606025-96C4-41CA-8F84-8F30589335EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E606025-96C4-41CA-8F84-8F30589335EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E606025-96C4-41CA-8F84-8F30589335EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AF54F81-DF10-4833-9E6F-DF93BFA8A9C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AF54F81-DF10-4833-9E6F-DF93BFA8A9C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AF54F81-DF10-4833-9E6F-DF93BFA8A9C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AF54F81-DF10-4833-9E6F-DF93BFA8A9C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBBB25C6-EC82-43EA-9398-AFBAABE16514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBBB25C6-EC82-43EA-9398-AFBAABE16514}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBBB25C6-EC82-43EA-9398-AFBAABE16514}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBBB25C6-EC82-43EA-9398-AFBAABE16514}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4E606025-96C4-41CA-8F84-8F30589335EE} = {88CE3E86-F441-4404-8D3A-C072FD8741E5}
+		{0AF54F81-DF10-4833-9E6F-DF93BFA8A9C3} = {DDB61EAE-6C28-4889-83DD-3EE1BE483883}
+		{FBBB25C6-EC82-43EA-9398-AFBAABE16514} = {DDB61EAE-6C28-4889-83DD-3EE1BE483883}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B35EC29F-539E-46AB-BDB4-86CD1CFE32FE}
+	EndGlobalSection
+EndGlobal

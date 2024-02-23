@@ -1,0 +1,21 @@
+{
+	"dependencies": {
+		"bootstrap": "5.3.2",
+		"jquery": "3.7.1"
+	},
+	"devDependencies": {
+		"@types/bootstrap": "5.2.10",
+		"@types/jquery": "3.5.29",
+		"esbuild": "0.20.0",
+		"sass": "1.70.0"
+	},
+	"private": true,
+	"scripts": {
+		"Build-Debug": "npm run Build-StyleSheet-Debug && npm run Build-Script-Debug",
+		"Build-Release": "npm run Build-StyleSheet-Release && npm run Build-Script-Release",
+		"Build-Script-Debug": "esbuild Scripts/Site.ts --bundle --outfile=wwwroot/Scripts/site.js",
+		"Build-Script-Release": "esbuild Scripts/Site.ts --bundle --minify --outfile=wwwroot/Scripts/site.js",
+		"Build-StyleSheet-Debug": "sass Style/Site.scss:wwwroot/Style/site.css --no-source-map",
+		"Build-StyleSheet-Release": "sass Style/Site.scss:wwwroot/Style/site.css --no-source-map --style=compressed"
+	}
+}
